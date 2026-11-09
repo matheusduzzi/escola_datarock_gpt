@@ -1,0 +1,23 @@
+You are producing a single game sprite for a cozy top-down 3/4-view pixel-art walk through the Loja Aurora, a bed, bath and table linen shop on a street in the centre of a small Brazilian town.
+
+STYLE (must follow exactly):
+- True pixel art: crisp square pixels, no anti-aliasing, no blur, no gradients, no glow, no noise texture, no photographic detail.
+- Camera: top-down 3/4 view, looking down from above and slightly from the south. Upright things (stools, planters) are seen from the front; table tops and counter tops are seen from above.
+- Light from the top-left. Each material uses two or three flat tones from the palette below.
+- A charcoal outline (#2b2a2e), 1 px at final size, around the whole silhouette and between big parts. Never pure black.
+- Use only this palette: cream #f3ead7, leaf green #3f7d4e, dark green #2a5a37, wood #a8743f, terracotta #c8613a, street grey #8a8f94, glass blue #8fc1d4, charcoal #2b2a2e, linen white #fbf8f1, mustard #d9a441, denim blue #3d5a80, wine #8c3b4a. Match the attached style board.
+- Brazilian small-town shop feel: wooden furniture, folded bed sets and towels, terracotta planters.
+
+OUTPUT RULES:
+- Exactly ONE object, centered, filling most of the canvas, standing on the bottom edge.
+- Solid flat magenta background (#FF00FF) everywhere outside the object. No floor, no ground patch, no cast shadow, no scenery.
+- No text, letters, numbers, logos or brand names anywhere.
+- No people and no animals.
+- Image 1 is the layout reference: keep its proportions, its size ratio and the position of every element (it is a rough grey placeholder: repaint it with much more charm and detail). Image 2 is the style board: use it for STYLE only, do not copy its objects.
+
+SPRITE: mesa-cama
+FINAL SIZE: 48 x 64 pixels (draw it at a larger multiple, the same aspect ratio 48:64; it will be downscaled).
+WHAT IT IS: a low wooden display table seen from above, with three folded bed sets stacked side by side on top (mustard, denim blue, linen white with a wine stripe).
+MUST KEEP FROM THE REFERENCE: the table fills the frame; the top surface takes the upper 50 of 64 rows, the front edge and two short legs take the rest.
+DETAILS TO ADD: a thin cream highlight on the upper edge of the table; neat folds on each bed set.
+AVOID: no price tags, no labels, no cast shadow.

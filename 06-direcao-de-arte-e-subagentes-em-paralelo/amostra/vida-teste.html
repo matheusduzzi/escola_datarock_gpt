@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>Teste da frente Vida</title></head>
+<body>
+<canvas id="c" width="640" height="400"></canvas>
+<script src="arte.js"></script>
+<script src="vida.js"></script>
+<script>
+  var ctx = document.getElementById('c').getContext('2d');
+  setInterval(function () {
+    ctx.clearRect(0, 0, 640, 400);
+    vida.atualizar(0.05); vida.desenhar(ctx);
+  }, 50);
+</script>
+</body>
+</html>

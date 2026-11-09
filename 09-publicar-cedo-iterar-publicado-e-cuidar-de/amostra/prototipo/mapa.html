@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como chegar na Loja Aurora</title>
+<link rel="stylesheet" href="pagina.css">
+<style> canvas { display: block; width: 100%; max-width: 34rem; border: 2px solid #2b2a2e; } .credito { font-size: .8rem; } </style>
+</head>
+<body>
+<main>
+  <h1>Como chegar</h1>
+  <p>As ruas em volta da loja do Centro. O ponto vinho é a loja.</p>
+  <canvas id="mapa" width="560" height="560" aria-label="Mapa das ruas em volta da loja"></canvas>
+  <!-- crédito: Mapa: © OpenStreetMap contributors, sob a licença ODbL (openstreetmap.org/copyright). Prédios e lugares: Overture Maps Foundation (overturemaps.org), com dados de OpenStreetMap e Microsoft (ODbL), Google Open Buildings (CC BY 4.0) e Meta, Microsoft e Uberall (CDLA Permissive 2.0). -->
+  <p><a class="botao" href="index.html">Voltar ao passeio</a></p>
+</main>
+<script src="bairro-data.js"></script>
+<script>
+  // Desenha as vias do bairro-data.js. A loja fica na origem (0, 0); a unidade é o decímetro.
+  var c = document.getElementById('mapa'), ctx = c.getContext('2d'), B = window.BAIRRO;
+  var meio = c.width / 2, escala = meio / 3000;
+  ctx.fillStyle = '#f3ead7'; ctx.fillRect(0, 0, c.width, c.height);
+  ctx.strokeStyle = '#2b2a2e'; ctx.lineWidth = 2;
+  B.vias.forEach(function (v) {
+    ctx.beginPath();
+    for (var i = 0; i < v.pontos.length; i += 2) {
+      var x = meio + v.pontos[i] * escala, y = meio + v.pontos[i + 1] * escala;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  });
+  ctx.fillStyle = '#7d2a3a'; ctx.beginPath(); ctx.arc(meio, meio, 7, 0, 2 * Math.PI); ctx.fill();
+</script>
+</body>
+</html>

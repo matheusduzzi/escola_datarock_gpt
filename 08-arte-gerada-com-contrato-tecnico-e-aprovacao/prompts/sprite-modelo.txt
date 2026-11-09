@@ -1,0 +1,8 @@
+(cole aqui o prompt mestre, de mestre.txt, e embaixo dele o bloco abaixo, preenchido)
+
+SPRITE: <nome do sprite, igual ao ARTE.md>
+FINAL SIZE: <largura> x <altura> pixels (draw it at a larger multiple, the same aspect ratio <largura>:<altura>; it will be downscaled).
+WHAT IT IS: <o que é, em inglês, com as cores pelo nome da paleta>
+MUST KEEP FROM THE REFERENCE: <o que não pode mudar do desenho de referência: o que fica em cima, o que fica embaixo>
+DETAILS TO ADD: <os detalhes que você quer>
+AVOID: <o que não pode aparecer; repita aqui "no cast shadow">

@@ -1,0 +1,3 @@
+#!/bin/sh
+# .githooks/pre-commit: bloqueia o commit se o teste falhar
+npm test --silent || { echo "npm test falhou: commit cancelado."; exit 1; }

@@ -1,0 +1,38 @@
+// Frente Vida: gente e bichos na calçada. No máximo 4 figuras e 1 bicho.
+(function () {
+  var P = window.PALETA;
+  var CALCADA = { y0: 292, y1: 318, x0: 10, x1: 630 };
+  var parado = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var figuras = [
+    { tipo: 'pessoa', x: 60, y: 300, v: 30, roupa: P.mostarda },
+    { tipo: 'pessoa', x: 420, y: 310, v: -36, roupa: P.jeans },
+    { tipo: 'ciclista', x: 250, y: 296, v: 62, roupa: '#e53935' },
+    { tipo: 'bicho', x: 540, y: 314, v: -24, roupa: P.vinho }
+  ];
+
+  function andar(f, dt) {
+    var x = f.x + f.v * dt;
+    if (x < CALCADA.x0 || x > CALCADA.x1) { f.v = -f.v; return; }
+    f.x = x;
+  }
+
+  window.vida = {
+    figuras: figuras,
+    atualizar: function (dt) {
+      if (parado || window.conversaAberta) return;
+      figuras.forEach(function (f) { andar(f, dt); });
+    },
+    desenhar: function (ctx) {
+      figuras.forEach(function (f) {
+        var a = f.tipo === 'bicho' ? 6 : 14;
+        ctx.fillStyle = P.sombra;
+        ctx.fillRect(f.x - 5, f.y + 2, 10, 3);
+        ctx.fillStyle = f.roupa;
+        ctx.fillRect(f.x - 4, f.y - a, 8, a);
+        ctx.strokeStyle = P.carvao;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(f.x - 4, f.y - a, 8, a);
+      });
+    }
+  };
+})();

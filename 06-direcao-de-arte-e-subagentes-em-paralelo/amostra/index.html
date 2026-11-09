@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loja Aurora: passeio pela loja do Centro</title>
+<style>
+  body { margin: 0; background: #f3ead7; color: #2b2a2e; font-family: system-ui, sans-serif; }
+  canvas { display: block; margin: 0 auto; max-width: 100%; }
+  p { text-align: center; }
+</style>
+</head>
+<body>
+<canvas id="cena" width="640" height="400" aria-label="A loja do Centro vista de cima, com a calçada"></canvas>
+<p>Espaço abre e fecha a conversa com o seu Dito. <a href="pagina.html">Sobre o passeio</a></p>
+<script src="arte.js"></script>
+<script src="vida.js"></script>
+<script>
+  var ctx = document.getElementById('cena').getContext('2d');
+  window.conversaAberta = false;
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'Space') { window.conversaAberta = !window.conversaAberta; e.preventDefault(); }
+  });
+  var antes = performance.now();
+  function quadro(agora) {
+    var dt = Math.min((agora - antes) / 1000, 0.1); antes = agora;
+    ctx.fillStyle = PALETA.rua; ctx.fillRect(0, 330, 640, 70);
+    ctx.fillStyle = PALETA.terracota; ctx.fillRect(0, 284, 640, 46);
+    ctx.fillStyle = PALETA.creme; ctx.fillRect(0, 0, 640, 284);
+    desenharLoja(ctx);
+    vida.atualizar(dt); vida.desenhar(ctx);
+    if (window.conversaAberta) {
+      ctx.fillStyle = PALETA.tecido; ctx.fillRect(140, 20, 360, 40);
+      ctx.fillStyle = PALETA.carvao; ctx.fillText('Seu Dito: Veio ver cortina ou toalha?', 156, 44);
+    }
+    requestAnimationFrame(quadro);
+  }
+  requestAnimationFrame(quadro);
+</script>
+</body>
+</html>

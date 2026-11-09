@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loja Aurora: passeio pela loja do Centro</title>
+<style>
+  body { margin: 0; background: #f3ead7; color: #2b2a2e; font-family: system-ui, sans-serif; }
+  canvas { display: block; margin: 0 auto; max-width: 100%; }
+  p { text-align: center; }
+</style>
+</head>
+<body>
+<canvas id="cena" width="640" height="400" aria-label="A loja do Centro vista de cima, com a calçada"></canvas>
+<p>Espaço abre e fecha a conversa com o seu Dito. <a href="pagina.html">Sobre o passeio</a></p>
+<p id="medida">Pior quadro nos últimos 2 segundos: medindo...</p>
+<script src="arte.js"></script>
+<script src="vida.js"></script>
+<script src="cena.js"></script>
+<script>
+  var ctx = document.getElementById('cena').getContext('2d');
+  var medida = document.getElementById('medida');
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'Space') { cena.alternarConversa(); e.preventDefault(); }
+  });
+  // Contador: quanto tempo o código leva para desenhar cada quadro. Mostra o pior a cada 2 segundos.
+  var antes = performance.now(), pior = 0, desde = antes;
+  function quadro(agora) {
+    var dt = Math.min((agora - antes) / 1000, 0.1); antes = agora;
+    var t0 = performance.now();
+    cena.quadro(ctx, dt);
+    pior = Math.max(pior, performance.now() - t0);
+    if (agora - desde > 2000) {
+      medida.textContent = 'Pior quadro nos últimos 2 segundos: ' + pior.toFixed(1).replace('.', ',') + ' ms';
+      pior = 0; desde = agora;
+    }
+    requestAnimationFrame(quadro);
+  }
+  requestAnimationFrame(quadro);
+</script>
+</body>
+</html>
